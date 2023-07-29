@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>StudierenDE</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box-1">
+        <h1 class="title">Worteingang (Kelime Girişi)</h1>
+        <div class="form-element form-title">
+          <h2>Neues Wort hinzufügen (Yeni kelime ekle)</h2>
+          <div class="selection">
+            <input
+              type="checkbox"
+              name="typename"
+              id="typename"
+              class="non-verb non-adjective"
+            />
+            <label for="typename" class="non-verb non-adjective">Nomen</label>
+            <input
+              type="checkbox"
+              name="typeverb"
+              id="typeverb"
+              class="non-name non-adjective"
+            />
+            <label for="typeverb" class="non-name non-adjective">Verb</label>
+            <input
+              type="checkbox"
+              name="typeadjective"
+              id="typeadjective"
+              class="non-name non-verb"
+            />
+            <label for="typeadjective" class="non-name non-verb"
+              >Adjektive</label
+            >
+          </div>
+        </div>
+        <form action="/new-word" method="post" class="form-1">
+          <div class="label-1">
+            <label class="article" for="artikel">Gib den Artikel ein: </label>
+          </div>
+          <div class="input-box input-1">
+            <input
+              disabled="true"
+              class="word-input article"
+              type="text"
+              id="artikel"
+              name="artikel"
+              autocomplete="off"
+              placeholder="Yazmak için tıkla"
+              required
+            />
+          </div>
+          <div class="label-2">
+            <label for="new">Gib das Wort ein: </label>
+          </div>
+          <div class="input-box input-2">
+            <input
+              disabled="true"
+              class="word-input common-input"
+              type="text"
+              id="new"
+              name="newbox"
+              autocomplete="off"
+              placeholder="Yazmak için tıkla"
+              required
+            />
+          </div>
+          <div class="label-3">
+            <label for="translation">Gib die Übersetzung ein: </label>
+          </div>
+          <div class="input-box input-3">
+            <input
+              disabled="true"
+              class="word-input common-input"
+              type="text"
+              id="translation"
+              name="translation"
+              autocomplete="off"
+              placeholder="Yazmak için tıkla"
+              required
+            />
+          </div>
+          <div class="form-element button">
+            <button id="save-button" type="submit" name="save" disabled="true">Speichern (Kaydet)</button>
+          </div>
+        </form>
+      </div>
+      <div class="form-box-2">
+       <div class="game-title">
+        <h1>Fang An Zu Lernen (Öğrenmeye Başla)</h1>
+        <div class="score-info">
+         <h2 class="record"></h2>
+         <h2 class="learned"></h2>
+         <h2 class="current-score"></h2>
+        </div>
+       </div>
+       <div class="game-buttons">
+        <form class="form-2">
+          <button type="button" id="noun-request" class="word-request type-button">Wähl Nomen aus</button>
+          <button type="button" id="verb-request" class="word-request type-button">Wähl Verb aus</button>
+          <button type="button" id="adjective-request" class="word-request type-button">Wähl Adjektiv aus</button>
+        </form>
+         <button type="reset" id="reset" class="reset">Beenden (Sonlandır)
+         </button>
+       </div>
+      <div class="answer-box">
+        <form class="form-answer" action="/answer" method="post">
+          <div class="answer">
+            <label class="label-answer" for="answer"
+              >Enter the translation:
+            </label>
+          </div>
+          <div class="input-answer">
+            <input
+              class="answer-translation"
+              type="text"
+              id="answer"
+              name="answer"
+              autocomplete="off"
+              placeholder="Enter the answer"
+            />
+            <button id="check-button" type="submit" name="check-button" class="type-button">
+              Cevabı Kontrol Et
+            </button>
+          </div>
+        </form>
+        <form>
+        <button id="options" type="button" class="type-button">Şıkları göster</button>
+        </form>
+        <div>
+          <div class="option option-a hide">
+            <p><b>A:</b></p>
+          </div> 
+          <div class="option option-b hide">
+            <p><b>B:</b></p>
+          </div> 
+          <div class="option option-c hide">
+            <p><b>C:</b></p>
+          </div>
+         </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="index.js" charset="UTF-8"></script>
+  </body>
+</html>
