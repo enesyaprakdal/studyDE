@@ -30,7 +30,9 @@ let completed;
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-mongoose.connect("mongodb://127.0.0.1:27017/StudydeDB");
+mongoose.connect(
+  "mongodb+srv://admin:Testtest123@studydecluster0.jiizfpn.mongodb.net/StudydeDB"
+);
 const nounSchema = new mongoose.Schema({
   wortart: String,
   artikel: String,
