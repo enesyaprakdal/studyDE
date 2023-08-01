@@ -272,9 +272,11 @@ app.post("/api", function (req, res) {
 
 app.post("/answer", function (req, res) {
   wortDb.find({ wort: wortList[defaultIndex] }).then(function (answerDb) {
-    if (
-      req.body.answer.toLowerCase() === answerDb[0].ubersetzung.toLowerCase()
-    ) {
+    let answerInput = req.body.answer;
+    if (answerInput.includes("I")) {
+      answerInput = answerInput.replaceAll("I", "ı");
+    }
+    if (answerInput.toLowerCase() === answerDb[0].ubersetzung.toLowerCase()) {
       res.sendFile(__dirname + "/public/correct.html");
       score += 5;
       newcount = correctcounts.get(wortList[defaultIndex]) + 1;

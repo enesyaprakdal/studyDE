@@ -10,6 +10,9 @@
   });
 }); */
 
+let inputId;
+let letter;
+
 $(".word-request").on("click", function (event) {
   $.post("/api", { button: event.target.id }, function (data) {
     if ($(".selected-word").html() || !data) {
@@ -17,6 +20,7 @@ $(".word-request").on("click", function (event) {
       $(".form-answer").css("visibility", "hidden");
       $(".option").addClass("hide");
       $("#options").css("visibility", "hidden");
+      $(".special-char").attr("disabled", "true");
     } else {
       $(".game-buttons").after(`<p class="selected-word">${data}</p>`);
       if (
@@ -59,6 +63,7 @@ $("#typename").on("click", function () {
     $(".word-input").removeAttr("disabled");
     $(".non-name").attr("disabled", "true");
     $("#save-button").removeAttr("disabled");
+    //$(".special-char").removeAttr("disabled");
     $.post("/type", { type: "noun" }, function (data, status) {
       console.log(status);
     });
@@ -66,6 +71,7 @@ $("#typename").on("click", function () {
     $(".word-input").attr("disabled", "true");
     $(".non-name").removeAttr("disabled");
     $("#save-button").attr("disabled", "true");
+    $(".special-char").attr("disabled", "true");
   }
 });
 
@@ -74,6 +80,7 @@ $("#typeverb").on("click", function () {
     $(".common-input").removeAttr("disabled");
     $(".non-verb").attr("disabled", "true");
     $("#save-button").removeAttr("disabled");
+    //  $(".special-char").removeAttr("disabled");
     $.post("/type", { type: "verb" }, function (data, status) {
       console.log(status);
     });
@@ -81,6 +88,7 @@ $("#typeverb").on("click", function () {
     $(".common-input").attr("disabled", "true");
     $(".non-verb").removeAttr("disabled");
     $("#save-button").attr("disabled", "true");
+    $(".special-char").attr("disabled", "true");
   }
 });
 
@@ -96,6 +104,7 @@ $("#typeadjective").on("click", function () {
     $(".common-input").attr("disabled", "true");
     $(".non-adjective").removeAttr("disabled");
     $("#save-button").attr("disabled", "true");
+    $(".special-char").attr("disabled", "true");
   }
 });
 
@@ -136,9 +145,31 @@ $("#reset").on("click", function (data) {
       $(".form-answer").css("visibility", "hidden");
       $(".option").addClass("hide");
       $("#options").css("visibility", "hidden");
+      $(".special-char").attr("disabled", "true");
     }
     $.get("/current-score", function (pCurrent) {
       $(".current-score").text(pCurrent);
     });
   });
+});
+
+$(".sp-char").on("focus", function (data) {
+  inputId = data.currentTarget.id;
+  $(".special-char").removeAttr("disabled");
+});
+
+/* $(".sp-char").on("blur", function (data) {
+  $(".special-char").attr("disabled", "true");
+}); */
+
+$(".special-char").on("click", function (data) {
+  letter = data.currentTarget.name;
+  let currentText = $("#" + inputId).val();
+  if (currentText !== "") {
+    $("#" + inputId).val(currentText + letter);
+    $("#" + inputId).trigger("focus");
+  } else {
+    $("#" + inputId).val(letter);
+    $("#" + inputId).trigger("focus");
+  }
 });

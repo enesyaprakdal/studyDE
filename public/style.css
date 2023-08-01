@@ -134,3 +134,7 @@ body {
 .back {
   min-height: 30vh;
 }
+
+#save-button {
+  margin-bottom: 10px;
+}
